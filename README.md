@@ -1,6 +1,6 @@
 # Javascript functions - Essential notes by Renato Lins
 
-JavaScript functions empower developers by providing the ability to package and reuse code chunks, playing a pivotal role in creating sleek, organized, and efficient projects. In this guide, I'll outline some essential notes about JavaScript functions that contribute to a better understanding of the language.
+JavaScript functions make up the essential 20% of code knowledge that brings about 80% of effectiveness in using the language. They empower developers by letting them bundle and reuse code, acting as the key element in creating projects that are not just functional but also neat, well-organized, and super efficient. In this guide, I'll share some essential points about JavaScript functions that might help in understanding the language better and serve as the foundation for good coding practices.
 
 ### 1. Function Parameters and Arguments
 
