@@ -95,30 +95,48 @@ const multiply = (a, b) => a * b;
 
 * Syntax: Regular functions use the function keyword followed by a name and parameter list. Arrow functions use a more concise syntax with parameters placed within parentheses, followed by an arrow (=>) and the function body.
 
- * __this__ binding: In regular functions, the value of this depends on how the function is called. It's dynamically determined at runtime. Arrow functions do not have their own this context. They inherit the this value from the surrounding code (lexical scope). 
- 
- __Example with Regular funtion call:__
+ * __this__ binding: Regular functions adjust their this dynamically, depending on where they are called. Meanwhile, arrow functions skip creating their own this context and just take it from the surrounding code (the lexical scope) where they're defined. Let's check these commented examples:
 
 ```javascript
-regularFunction(); // 'this' in regularFunction will refer to the global object (e.g., window in a browser)
+// 1 - Example with Regular function call:
+
+// Defining the regular function.
+function regularFunction() {
+  console.log("'this' in regularFunction refers to the global object");
+}
+
+// Calling regularFunction directly.
+regularFunction();
+
+// Creating an object 'obj' with a method 'method' that points to regularFunction.
 const obj = {
   method: regularFunction,
 };
-obj.method(); // 'this' in regularFunction will refer to the object 'obj'
-```
+// Calling the method 'method' on 'obj'.
+obj.method(); // 'this' in regularFunction now refers to the object 'obj' in this context
 
-__Example with arrow function call:__
+// 2 - Example with Arrow function call:
 
-```javascript
-arrowFunction(); // 'this' in arrowFunction will still refer to the global object (lexical scoping doesn't affect 'this' in arrow functions)
+// Defining the arrow function.
+const arrowFunction = () => {
+  console.log("'this' in arrowFunction still refers to the global object");
+};
+
+// Calling arrowFunction directly.
+arrowFunction();
+
+// Creating an object 'arrowObj' with a method 'method' that points to arrowFunction.
 const arrowObj = {
   method: arrowFunction,
 };
+// Calling the method 'method' on 'arrowObj'.
+arrowObj.method(); 
+/* 'this' in arrowFunction still refers to the global object, not 'arrowObj'
+ (lexical scoping doesn't create a new 'this' for arrow functions)*/
 
-arrowObj.method(); // 'this' in arrowFunction will also refer to the global object, not 'arrowObj' (lexical scoping doesn't create a new 'this' for arrow functions)
 ```
 
-To simplify: In a regular function, how this behaves depends on how the function is called and is figured out when the function runs. In an arrow function, there's no separate this context; it takes this from where it's written in the code. So, in an arrow function, this is decided by where it's defined, not how it's used.
+To simplify: In arrow functions the value of __this__ is determined by where it is defined, not where it is used.
 
  __Arguments Object:__
 
@@ -173,7 +191,8 @@ A closure in JavaScript occurs when an inner function retains access to variable
 
 ```javascript
 function createMultiplier(factor) {
-  // The inner function below retains the outer scope's factor value even after createMultiplier has finished executing
+  /* The inner function below retains the outer scope's factor value even after
+   createMultiplier has finished executing */
   return function (value) {
     return value * factor;
   };
