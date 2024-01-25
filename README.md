@@ -104,7 +104,7 @@ function greet(name) {
 }
 ```
 
-The greet function is called before its declaration, which might seem counterintuitive in other programming languages. However, due to hoisting, during the compilation phase, the JavaScript engine moves the entire function declaration to the top of its scope. Therefore, by the time the code is executed, the function greet is already available, and the function call works as expected. The equivalent hoisted version of the code would be:
+The ```greet``` function is called before its declaration, which might seem counterintuitive in other programming languages. However, due to hoisting, during the compilation phase, the JavaScript engine moves the entire function declaration to the top of its scope. Therefore, by the time the code is executed, the function greet is already available, and the function call works as expected. The equivalent hoisted version of the code would be:
 
 ```javascript
 function greet(name) {
@@ -190,9 +190,9 @@ arrowObj.method();
 
 So we have:
 
-__Scope__: In arrow functions the value of __this__ is determined by where it is defined, not where it is used. In function declarations using the function keyword, the value of this is dynamically determined at runtime, depending on how the function is invoked.
+__Scope__: In arrow functions the value of ```this``` is determined by where it is defined, not where it is used. In function declarations using the ```function``` keyword, the value of ```this``` is dynamically determined at runtime, depending on how the function is invoked.
 
-__Usage:__ Function declarations are suitable for methods in objects or functions that need their own this context. Arrow functions are often used for concise one-liner functions, callbacks, and in scenarios where you want to preserve the surrounding this context.
+__Usage:__ Function declarations are suitable for methods in objects or functions that need their own ```this``` context. Arrow functions are often used for concise one-liner functions, callbacks, and in scenarios where you want to preserve the surrounding this context.
 
 __The 'return' syntax__: Function declarations always have an explicit return statement. Arrow functions with a single expression can have an implicit return, meaning the expression's value is automatically returned without needing a return keyword.
 
@@ -200,7 +200,7 @@ Extra consideation: Function declarations(or regular functions) have access to t
 
 ### 4. Higher-Order Functions
 
-Higher-order functions in JavaScript are functions that can either accept other functions as arguments or return functions as their results. Also, we can consider the passed function as a higher-order function, since it operates on another function. This unique feature empowers functions to be treated as dynamic entities within the language, granting greater flexibility in programming. An exemplary case of a higher-order function is the operateOnArray function:
+Higher-order functions in JavaScript are functions that can either accept other functions as arguments or return functions as their results. Also, we can consider the passed function as a higher-order function, since it operates on another function. This unique feature empowers functions to be treated as dynamic entities within the language, granting greater flexibility in programming. An exemplary case of a higher-order function is the ```operateOnArray``` function:
 
 ```javascript
 function operateOnArray(arr, operation) {
@@ -215,7 +215,7 @@ const numbers = [1, 2, 3];
 const doubled = operateOnArray(numbers, (x) => x * 2);
 ```
 
-Notably, the function ```(x) => x * 2```, passed as an argument to operateOnArray, is itself a higher-order function. It operates on another function—each array element's value, in this case. This powerful concept of higher-order functions fundamentally contributes to the versatility and expressiveness of JavaScript programming.
+Notably, the function ```(x) => x * 2```, passed as an argument to ```operateOnArray```, is itself a higher-order function as it operates on another function. This powerful concept of higher-order functions fundamentally contributes to the versatility and expressiveness of JavaScript programming.
 
 ### 5. Closures
 
@@ -231,7 +231,7 @@ function createMultiplier(factor) {
 }
 ```
 
-Upon invoking createMultiplier, the 'factor' value remains available for utilization by the inner function. Since the inner function is returned (and can be linked to a function expression), we obtain a function capable of receiving values for its internal operations while also accessing the value provided in the outer scope function (in this instance, 'factor').  With this in mind, we can use the closure above to do the following:
+Upon invoking createMultiplier, the ```factor``` value remains available for utilization by the inner function. Since the inner function is returned (and can be linked to a function expression), we obtain a function capable of receiving values for its internal operations while also accessing the value provided in the outer scope function (in this case, ```factor```).  With this in mind, we can use the closure above to do the following:
 
 ```javascript
 const double = createMultiplier(2);
@@ -241,7 +241,7 @@ console.log(double(5)); // Outputs 10.
 console.log(triple(5)); // Outputs 15.
 ```
 
-Closures are essential for various programming patterns, like creating private data, implementing data encapsulation, and achieving certain functionalities in functional programming and asynchronous programming.
+Closures are essential for various programming patterns, like creating private data, implementing data encapsulation, and enabling certain capabilities for both functional and asynchronous programming.
 
 ### 6. Callbacks and Asynchronous JavaScript
 
@@ -263,6 +263,8 @@ function displayData(data) {
 fetchData(displayData);
 ```
 
+Note: The problem with depending on callbacks for asynchronous operations is that we might encounter a situation where we need to chain multiple callbacks one after the other, making the code difficult to read and potentially prone to bugs. To tackle this issue, JavaScript introduces the concept of promises, which will be covered later in this tutorial.
+
 ### 7. Default Parameters and Rest Parameters (ES6 Features)
 
 In ES6, default parameters and rest parameters were introduced to make functions more flexible.
@@ -277,11 +279,11 @@ function greet(name = "User") {
 }
 ```
 
-In this case, if you call greet() without providing a name, it will default to "User." If you call greet("John"), it will use the provided name.
+In this case, if you call ```greet``` without providing a name, it will default to "User". If you call greet("John"), it will use the provided name.
 
 __Rest Parameters:__
 
- The rest parameter (...numbers in this case) allows a function to accept an indefinite number of arguments as an array. You can then perform operations on this array within the function. For example:
+ The rest parameter (```...numbers``` in this case) allows a function to accept an indefinite number of arguments as an array. You can then perform operations on this array within the function. For example:
 
 ```javascript
 function sum(...numbers) {
@@ -290,7 +292,7 @@ function sum(...numbers) {
 }
 ```
 
-Here, the sum function can take any number of arguments, and it will calculate their sum using the reduce method. For instance, ```sum(1, 2, 3)``` will return ```6```. In summary, default parameters provide a fallback value if an argument is not provided, and rest parameters allow a function to handle an arbitrary number of arguments as an array, enabling flexible and dynamic behavior.
+Here, the sum function can take any number of arguments, and it will calculate their sum using the ```reduce``` method. For instance, ```sum(1, 2, 3)``` will return ```6```. In summary, default parameters provide a fallback value if an argument is not provided, and rest parameters allow a function to handle an arbitrary number of arguments as an array, enabling flexible and dynamic behavior.
 
 ### 8. IIFE (Immediately Invoked Function Expression)
 
@@ -308,7 +310,7 @@ console.log(privateVar); // Error: privateVar is not defined
 
 ### 9. Recursion
 
-Recursion is a technique where a function calls itself to solve a problem. It's particularly useful for solving problems that can be broken down into smaller, similar sub-problems. Example:
+Recursion is a technique where a function calls itself. It's particularly useful for solving problems that can be broken down into smaller, similar sub-problems. Example:
 
 ```javascript
 function factorial(n) {
@@ -366,7 +368,7 @@ console.log(counter.next().value); // Outputs 2
 
 Promises and ```async-await``` are mechanisms for dealing with asynchronous code in a more organized and readable manner. 
 
-__Promisse:__ Promises provide a cleaner way to manage asynchronous operations. The example below demonstrates a function, ```fetchData()```, that returns a Promise. The Promise is used to handle the asynchronous process of fetching data, simulating a server request with a delay. The ```.then()``` method is then used to handle the resolved value (successful result), and ```.catch()``` is used for error handling. A common way to create promisses is to attach a new Promise to the return of a function. In technical terms, we are using the ```new``` keyword to instantiate a new promisse in the shape of the ```Promise``` built-in object constructor.
+__Promisse:__ Promises provide a cleaner way to manage asynchronous operations. The example below demonstrates a function, ```fetchData()```, that returns a Promise. The Promise is used to handle the asynchronous process of fetching data, simulating a server request with a delay. The ```.then()``` method is then used to handle the resolved value (successful result), and ```.catch()``` is used for error handling. A common way to create promisses is to attach a new Promise to the return of a function. In technical terms, we are using the ```new``` keyword to instantiate a new promisse in the shape of the ```Promise``` constructor (that is a built-in Javascript feature).
 
 ```javascript
 function fetchData() {
@@ -517,13 +519,51 @@ function attachHandler(element, eventName) {
     });
 }
 
-const button = document.getElementById("myButton");
+const button = document.getElementById("my-button");
 attachHandler(button, "click");
 ```
 
-The attachHandler function takes an HTML element (element) and an event name (eventName) as parameters. Inside the function, a closure is created when the anonymous function (event listener) is defined within the addEventListener call. This closure captures the values of both element and eventName at the time of the function call. When the event (in this case, a "click" event) occurs on the specified element (in this case, a button with the id "myButton"), the attached event listener function is executed. Since the closure captured the values of element and eventName when attachHandler was called, the listener correctly logs the event details, including the event name and the id of the element. This mechanism ensures that even if the attachHandler function completes its execution and the surrounding context changes, the event listener still has access to the variables it needs due to the closure's encapsulation of those values.
+The ```attachHandler``` function takes an HTML element (```element```) and an event name (```eventName```) as parameters. Inside the function, a closure is created when the anonymous function (event listener) is defined within the ```addEventListener``` call. This closure captures the values of both element and eventName at the time of the function call. When the event (in this case, a "click" event) occurs on the specified element (in this case, a button with the id ```my-button```), the attached event listener is executed. Since the closure captured the values of ```element``` and ```eventName``` when ```attachHandler``` was called, the listener correctly logs the event details, including the event name and the id of the element. This mechanism ensures that even if the ```attachHandler``` function completes its execution and the surrounding context changes, the event listener still has access to the variables it needs due to the closure's encapsulation of those values.
 
-### 19. Functions as first-class citizens:
+### 19. The 'Event loop' and how it relates to function calls
+
+JavaScript is a single-threaded language, meaning it has only one execution thread. This thread executes code line by line. If a piece of code takes a long time to run, it can block the entire thread, making the application unresponsive. JavaScript is designed to be __non-blocking__ and uses an __event-driven__ model to handle asynchronous code. This can lead to some behaviors that may seem counterintuitive at first, but I hope it will make sense once we delve into the following concepts:
+
+__Call Stack:__ The call stack is a mechanism that keeps track of the functions being executed. When a function is called, it is added to the top of the stack, and when the function completes, it is removed from the stack.
+The call stack follows a last-in, first-out (LIFO) order, meaning the last function added is the first one to be executed.
+
+__Callback Queue:__ The callback queue (also known as the task queue or message queue) is where asynchronous callbacks are placed after their associated operations complete. Asynchronous operations, such as those initiated by timers (setTimeout), AJAX/HTTP requests, or event handlers, involve callbacks that are not executed immediately. Instead of blocking the main thread, these callbacks are scheduled to run after the current execution context is finished. When the callback is ready to be executed, it is placed in the callback queue.
+
+__Event Loop:__ The event loop is a continuous process that runs in the background, constantly monitoring the call stack and the callback queue. If the call stack is empty, the event loop takes the first task (callback) from the callback queue and pushes it onto the call stack for execution. This process ensures that asynchronous tasks are executed in a non-blocking manner.
+
+Now we are able to analyse the following situation:
+
+```javascript
+console.log("Start"); 
+
+setTimeout(() => {
+  console.log("Inside setTimeout callback");
+}, 0);
+
+console.log("End");
+
+// Output:
+// Start
+// End
+// Inside setTimeout callback
+```
+
+So we will have:
+
+* The ```console.log("Start")``` and ```console.log("End")``` statements are synchronous function calls, and they will be executed immediately in the order they appear.
+
+* The ```setTimeout``` initiates an asynchronous operation by scheduling its callback function to be executed after a minimal delay (even though it's specified as 0).
+
+* The ```console.log("Inside setTimeout callback")``` statement is part of the callback function passed to setTimeout, and its execution is delayed.
+
+While the example uses ```console.log()```, the behavior is similar for other functions. The key point is to demonstrate how asynchronous operations impact the flow of the program and introduce a delay in execution order.
+
+### 20. Functions as first-class citizens:
 
 The concept of "first-class citizens" is a fundamental principle in programming languages, including JavaScript. It refers to the idea that entities such as functions and variables are treated as equal citizens within the language, meaning they can be used, manipulated, and passed around just like any other data type. In simpler terms, in a programming language that treats entities as first-class citizens, you can do the following with functions and variables:
 
