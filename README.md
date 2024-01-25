@@ -2,33 +2,99 @@
 
 JavaScript functions make up the essential 20% of code knowledge that brings about 80% of effectiveness in using the language. They empower developers by letting them bundle and reuse code, acting as the key element in creating projects that are not just functional but also neat, well-organized, and super efficient. In this guide, I'll share some essential points about JavaScript functions that might help in understanding the language better and serve as the foundation for good coding practices.
 
-### 1. Function Parameters and Arguments
+### 1. Function basics
 
-Parameters are placeholders in a function's declaration that represent the values the function expects to receive when it is called. Arguments are the actual values passed to the function when it is invoked.
+There are two common ways to define functions in JavaScript: function declarations and function expressions.
 
-```javascript
-function addNumbers(a, b) {
-    return a + b;
-}
-
-const result = addNumbers(5, 3); // Here, 5 and 3 are arguments.
-```
-
-### 2. Return Statement
-
-Functions often produce a value that can be used elsewhere in the code. The return statement is used to specify the value that the function should output when it is executed.
+__Function Declaration:__ A function declaration is a way to define a function with the function keyword, followed by the function name, a list of parameters enclosed in parentheses, and a block of code enclosed in curly braces.
 
 ```javascript
-function multiply(a, b) {
-    return a * b;
+// Defining the function
+function add(x, y) {
+  // Calculating the sum of x and y
+  const sum = x + y;
+  
+  // Returning the calculated sum
+  return sum;
 }
 
-const product = multiply(4, 6); // The function returns 24.
+// Calling the function and storing the returned value on a 'const'
+const mySum = add(3, 7);
+
+// Displaying the result
+console.log(mySum) // Output: 10
 ```
 
-### 3. Function Hoisting
+In this example:
 
-Function declarations are hoisted, which means they are moved to the top of their scope during the compilation phase. This allows you to call a function before its actual declaration in the code.
+* __add__ is the function name
+* __(x, y)__ are the parameters or 'placeholders' that represent the data that the function is receiving when called
+* __const sum = x + y;__ represents the function body, where the actual code is executed
+* __return sum;__ is result returned after the code is executed
+
+In JavaScript, a function declaration must have a name. The syntax for a function declaration includes the ```function``` keyword followed by the name of the function, a list of parameters enclosed in parentheses, and a block of code enclosed in curly braces. This idea is not true for function expressions (they are nameless), as we will see next.
+
+__Function Expression:__ A function expression is another way to define a function by assigning it to a variable. This can be done using the function keyword or the more modern arrow function syntax (=>).
+
+```javascript
+// Example 1 - Using function keyword
+
+// Defining the function while storing it as a value (as part of an expression)
+const subtract = function(x, y) {
+  return x - y;
+};
+
+// Calling the function and storing the returned value on a 'const'
+const mySubtract = subtract(7, 3);
+
+// Displaying the result
+console.log(mySubtract) // Output: 4
+```
+
+```javascript
+// Example 2 - arrow function with the arrow syntax
+
+// Also defining the function and storing it as a value
+const subtract = (x, y) => x - y;
+
+// Calling the arrow function (nothing changes)
+const mySubtract = subtract(7, 3);
+
+// Displaying the result
+console.log(mySubtract); // Output: 4
+```
+
+In both examples, the functions themselves are nameless, yet we can reference them by associating them to values. Consequently, we call ```subtract()``` as if it were a function, while, in reality, it is a variable storing a nameless function expression. The term "nameless" refers to the fact that the functions themselves don't have a separate identifier, but they are effectively named through the variables to which they are assigned.
+
+__Function declaration vs. function expressions:__ For routine programming tasks, functions can be declared using either named or anonymous approaches. Named functions are particularly beneficial for self-referencing, such as in recursive functions, and they contribute to clearer stack traces during debugging, potentially easing the identification of functions causing issues. In the majority of scenarios, there is no substantial performance difference between named and anonymous functions. Modern JavaScript engines are optimized to efficiently handle both types. However, in certain extreme cases, named functions might exhibit a marginal speed advantage due to potential optimizations in specific JavaScript engines. Nevertheless, arrow functions are often preferred not just for their modern and concise syntax but also for their predictability, especially when developers navigate thru concepts like __hoisting__ and __context__ as we will see later on.
+
+__Types of arrow functions:__ Arrow functions provide a concise syntax for writing functions. There are two main forms of arrow functions: the short syntax for one-liner functions, and the long syntax for functions with multiple statements or requiring a more explicit structure.
+
+* Short Syntax (One-Liner Arrow Functions as seen previously): Here the ```return``` statement is implicit and does not require curly braces.
+
+```javascript
+// Short syntax for squaring a number
+const square = (x) => x * x;
+```
+
+* Long Syntax (Block Body Arrow Functions): The long syntax is used when a function requires multiple statements or a more explicit structure. It involves using curly braces ```{}``` to define a block of code. The ```return``` statement is needed explicitly if the function is expected to return a value.
+
+```javascript
+// Long syntax for a function with conditional logic
+const greet = (timeOfDay) => {
+  if (timeOfDay === 'morning') {
+    return 'Good morning!';
+  } else {
+    return 'Hello!';
+  }
+};
+```
+
+### 2. Function Hoisting
+
+Function hoisting is a behavior in JavaScript where function declarations are moved to the top of their containing scope during the compilation phase. This means that you can call a function before its actual declaration in the code, and the JavaScript engine will still recognize and execute the function call correctly.
+
+In the provided example:
 
 ```javascript
 greet("Alice"); // This works even though the function is called before its declaration.
@@ -38,31 +104,43 @@ function greet(name) {
 }
 ```
 
-### 4. Definition: Function Declaration & Function Expression
-
-__Function Declarations:__
-
-A function declaration is a way to define a named function using the function keyword. This function has a specific name that you give it. One unique feature of function declarations is "hoisting." This means that you can call the function before you actually write its definition in your code. JavaScript will move the function declaration to the top of its scope during execution, making it accessible anywhere within that scope. Example:
+The greet function is called before its declaration, which might seem counterintuitive in other programming languages. However, due to hoisting, during the compilation phase, the JavaScript engine moves the entire function declaration to the top of its scope. Therefore, by the time the code is executed, the function greet is already available, and the function call works as expected. The equivalent hoisted version of the code would be:
 
 ```javascript
 function greet(name) {
-    return `Hello, ${name}!`;
+    console.log(`Hello, ${name}!`);
 }
+
+greet("Alice"); 
 ```
 
-__Function Expressions:__
-
-A function expression involves creating a function as part of an expression. This can make your code more flexible and allows you to assign functions to variables or use them as arguments for other functions (like callbacks). A function expression can be either anonymous (without a name) or named. When a function expression is anonymous, it's typically used when you only need to use the function in one place and don't plan on reusing it extensively. When it's named, you can refer to the function by its name within the expression and wherever the expression is used. Example:
+This behavior applies specifically to function declarations (using the function keyword). It does not apply to function expressions or arrow functions. While function declarations are fully hoisted and can be used before their declaration, function expressions and arrow functions are only partially hoisted. The variable declarations are hoisted, but the function assignments are not, leading to potential errors if accessed before actual declaration:
 
 ```javascript
-const greet = function(name) {
-    return `Hello, ${name}!`;
+// This will result in an error
+greet("Alice"); // Error: Cannot access 'greet' before initialization
+
+let greet = function(name) {
+    console.log(`Hello, ${name}!`);
 };
 ```
 
-### 5. Function Scope
+Assigning function expressions to ```let``` and ```const``` is not just preferable because they represent modern ways of declaring variables, but also because they enforce more predictable scenarios when we only call functions after they are defined. The error mentioned above arises when encountering the concept of the 'Temporal Dead Zone (TDZ)'. The TDZ is a period during which accessing a variable or constant before its actual declaration results in an error.
 
-JavaScript has three main scopes: global, local/function and block scopes. Variables declared inside a function are only accessible within that function, creating a localized environment.
+```javascript
+// Trying to access the variable before declaration
+console.log(name); // ReferenceError: Cannot access 'name' before initialization
+
+// Declaration and assignment in the same scope
+let name = "Alice";
+
+// Now accessing the variable after declaration
+console.log(name); // Outputs: Alice
+```
+
+### 3. Scope I - Function scope and context
+
+JavaScript has three main scopes: global, local/function and block scopes. Variables declared inside a function are only accessible within that function scope, creating a localized environment.
 
 ```javascript
 function printMessage() {
@@ -73,39 +151,15 @@ function printMessage() {
 console.log(message); // Throws an error, 'message' is not defined.
 ```
 
-### 6. Regular Functions vs Arrow Functions
-
-Regular functions and arrow functions are two ways to define functions in JavaScript, each with its own syntax and behavior. Here's a comparison between them:
-
-__Regular Function:__
+ __'this' binding (context):__ The ```this``` value references the context or scope that the code is considering. Named function declarations, dynamically adjust their this value based on where they are called. In contrast, arrow functions inherit the context from the scope in which they are defined. Let's examine these examples:
 
 ```javascript
-function multiply(a, b) {
-    return a * b;
-}
-```
+// 1 - Example with function declaration:
 
-__Arrow Function:__
-
-```javascript
-const multiply = (a, b) => a * b;
-```
-
- __Differences:__
-
-* Syntax: Regular functions use the function keyword followed by a name and parameter list. Arrow functions use a more concise syntax with parameters placed within parentheses, followed by an arrow (=>) and the function body.
-
- * __this__ binding: Regular functions adjust their this dynamically, depending on where they are called. Meanwhile, arrow functions skip creating their own this context and just take it from the surrounding code (the lexical scope) where they're defined. Let's check these commented examples:
-
-```javascript
-// 1 - Example with Regular function call:
-
-// Defining the regular function.
 function regularFunction() {
   console.log("'this' in regularFunction refers to the global object");
 }
 
-// Calling regularFunction directly.
 regularFunction();
 
 // Creating an object 'obj' with a method 'method' that points to regularFunction.
@@ -117,7 +171,6 @@ obj.method(); // 'this' in regularFunction now refers to the object 'obj' in thi
 
 // 2 - Example with Arrow function call:
 
-// Defining the arrow function.
 const arrowFunction = () => {
   console.log("'this' in arrowFunction still refers to the global object");
 };
@@ -133,40 +186,19 @@ const arrowObj = {
 arrowObj.method(); 
 /* 'this' in arrowFunction still refers to the global object, not 'arrowObj'
  (lexical scoping doesn't create a new 'this' for arrow functions)*/
-
 ```
 
-To simplify: In arrow functions the value of __this__ is determined by where it is defined, not where it is used.
+So we have:
 
- __Arguments Object:__
+__Scope__: In arrow functions the value of __this__ is determined by where it is defined, not where it is used. In function declarations using the function keyword, the value of this is dynamically determined at runtime, depending on how the function is invoked.
 
-Regular functions have access to the arguments object, which holds all arguments passed to the function.
-Arrow functions do not have their own arguments object. They inherit the arguments from the enclosing scope.
+__Usage:__ Function declarations are suitable for methods in objects or functions that need their own this context. Arrow functions are often used for concise one-liner functions, callbacks, and in scenarios where you want to preserve the surrounding this context.
 
- __Usage:__
+__The 'return' syntax__: Function declarations always have an explicit return statement. Arrow functions with a single expression can have an implicit return, meaning the expression's value is automatically returned without needing a return keyword.
 
-Regular functions are suitable for methods in objects or functions that need their own this context.
-Arrow functions are often used for concise one-liner functions, callbacks, and in scenarios where you want to preserve the surrounding this context.
+Extra consideation: Function declarations(or regular functions) have access to the arguments object, which holds all arguments passed to the function. Arrow functions do not have their own arguments object. They inherit the arguments from the enclosing scope.
 
- __Return Behavior__:
-
-Regular functions allow more complex function bodies and have an explicit return statement.
-Arrow functions with a single expression can have an implicit return, meaning the expression's value is automatically returned without needing a return keyword.
-
-### 7. Anonymous Functions
-
-Anonymous functions are functions without a name. They can be used directly where they're needed or assigned to variables.
-
-```javascript
-const square = function(x) {
-    return x * x;
-};
-
-// Arrow functions provide a shorter syntax for anonymous functions.
-const square = (x) => x * x;
-```
-
-### 8. Higher-Order Functions
+### 4. Higher-Order Functions
 
 Higher-order functions in JavaScript are functions that can either accept other functions as arguments or return functions as their results. Also, we can consider the passed function as a higher-order function, since it operates on another function. This unique feature empowers functions to be treated as dynamic entities within the language, granting greater flexibility in programming. An exemplary case of a higher-order function is the operateOnArray function:
 
@@ -185,7 +217,7 @@ const doubled = operateOnArray(numbers, (x) => x * 2);
 
 Notably, the function ```(x) => x * 2```, passed as an argument to operateOnArray, is itself a higher-order function. It operates on another function—each array element's value, in this case. This powerful concept of higher-order functions fundamentally contributes to the versatility and expressiveness of JavaScript programming.
 
-### 9. Closures
+### 5. Closures
 
 A closure in JavaScript occurs when an inner function retains access to variables from its outer (enclosing) function's scope, even after the outer function has completed its execution. This allows the inner function to "remember" and utilize those variables whenever it's called, creating a lasting connection between the inner and outer functions.
 
@@ -211,7 +243,7 @@ console.log(triple(5)); // Outputs 15.
 
 Closures are essential for various programming patterns, like creating private data, implementing data encapsulation, and achieving certain functionalities in functional programming and asynchronous programming.
 
-### 10. Callbacks and Asynchronous JavaScript
+### 6. Callbacks and Asynchronous JavaScript
 
 Functions can be used as callbacks in asynchronous operations to handle actions that might take some time to complete, like fetching data or handling events.
 
@@ -231,7 +263,7 @@ function displayData(data) {
 fetchData(displayData);
 ```
 
-### 11. Default Parameters and Rest Parameters (ES6 Features)
+### 7. Default Parameters and Rest Parameters (ES6 Features)
 
 In ES6, default parameters and rest parameters were introduced to make functions more flexible.
 
@@ -260,7 +292,7 @@ function sum(...numbers) {
 
 Here, the sum function can take any number of arguments, and it will calculate their sum using the reduce method. For instance, ```sum(1, 2, 3)``` will return ```6```. In summary, default parameters provide a fallback value if an argument is not provided, and rest parameters allow a function to handle an arbitrary number of arguments as an array, enabling flexible and dynamic behavior.
 
-### 12. IIFE (Immediately Invoked Function Expression)
+### 8. IIFE (Immediately Invoked Function Expression)
 
 An IIFE is a function that is defined and executed immediately after its creation. It's often used to create a private scope and prevent variable name clashes.
 
@@ -274,7 +306,7 @@ An IIFE is a function that is defined and executed immediately after its creatio
 console.log(privateVar); // Error: privateVar is not defined
 ```
 
-### 13. Recursion
+### 9. Recursion
 
 Recursion is a technique where a function calls itself to solve a problem. It's particularly useful for solving problems that can be broken down into smaller, similar sub-problems. Example:
 
@@ -289,7 +321,7 @@ function factorial(n) {
 console.log(factorial(5)); // Outputs 120
 ```
 
-### 14. Call, Apply, and Bind
+### 10. Scope II - The Methods .call, .apply, and .bind
 
 These are methods that can be used to control the context (this) in which a function is executed.
 
@@ -313,7 +345,7 @@ const boundGreet = greet.bind(person);
 boundGreet("Hey"); // Outputs "Hey, John Doe"
 ```
 
-### 15. Generator Functions
+### 11. Generator Functions
 
 Generator functions allow you to pause and resume their execution, yielding values one at a time. They are useful for dealing with asynchronous operations and lazy evaluation.
 
@@ -330,34 +362,43 @@ console.log(counter.next().value); // Outputs 2
 // And so on...
 ```
 
-### 16. Promises and Async/Await
+### 12. Promises, async-await and how they relate to functions
 
-Promises and async/await are mechanisms for dealing with asynchronous code in a more organized and readable manner. 
+Promises and ```async-await``` are mechanisms for dealing with asynchronous code in a more organized and readable manner. 
 
-__Promisse:__
+__Promisse:__ Promises provide a cleaner way to manage asynchronous operations. The example below demonstrates a function, ```fetchData()```, that returns a Promise. The Promise is used to handle the asynchronous process of fetching data, simulating a server request with a delay. The ```.then()``` method is then used to handle the resolved value (successful result), and ```.catch()``` is used for error handling. A common way to create promisses is to attach a new Promise to the return of a function. In technical terms, we are using the ```new``` keyword to instantiate a new promisse in the shape of the ```Promise``` built-in object constructor.
 
 ```javascript
 function fetchData() {
     return new Promise((resolve, reject) => {
-        // Simulate fetching data from a server
+        // Simulating an asynchronous operation with a random success/failure outcome
         setTimeout(() => {
-            const data = { name: "Alice", age: 25 };
-            resolve(data);
+            const operationResult = Math.random() > 0.5;
+
+            if (operationResult) {
+                const data = { name: "Alice", age: 25 };
+                resolve(data); // Resolve with data
+            } else {
+                reject("Operation failed!"); // Reject with an error message
+            }
         }, 1000);
     });
 }
 
+// Calling 'fetchData', which returns a Promise with asynchronous operation capabilities.
+// 'fetchData' is no longer a regular function; it is now a Promise that may resolve with data or reject with an error.
 fetchData()
     .then(data => console.log(data))
     .catch(error => console.error(error));
 ```
 
-__async/await__:
+__async-await__: The ```async-await``` syntax provides a more synchronous-looking way to work with asynchronous code. In the example, the function ```fetchDataAsync()``` is declared as ```async```, and within it, ```await``` is used to pause the execution until the ```fetchData()``` resolves or rejects. This enhances readability by making the asynchronous code appear similar to synchronous code.
 
 ```javascript
-async function fetchDataAsync() {
+async function fetchDataAsync() { // 'async' keyword is necessary if we plan to use 'wait' inside of that same function
     try {
-        const data = await fetchData();
+        // fetchData is is a promise that is temporarily paused until it either resolves with a result or rejects with an error.
+        const data = await fetchData(); 
         console.log(data);
     } catch (error) {
         console.error(error);
@@ -367,7 +408,7 @@ async function fetchDataAsync() {
 fetchDataAsync();
 ```
 
-### 17. Function Currying
+### 13. Function Currying
 
 Currying is the process of converting a function that takes multiple arguments into a series of functions that take one argument each.
 
@@ -384,7 +425,7 @@ console.log(add5(3)); // Outputs 8
 
 Note that this technique is entirely based on the concept of closures.
 
-### 18. Memoization
+### 14. Memoization
 
 Memoization is a technique to optimize functions by caching their results for specific inputs, reducing redundant computations.
 
@@ -403,23 +444,7 @@ function fibonacci(n, memo = {}) {
 console.log(fibonacci(10)); // Outputs 55
 ```
 
-### 19. Map, Filter, and Reduce
-
-These are higher-order functions commonly used for working with arrays in a functional programming style.
-
-- __map__: Creates a new array by applying a function to each element of the original array.
-- __filter__: Creates a new array with elements that pass a certain condition.
-- __reduce__: Applies a function to reduce the array to a single value.
-
-```javascript
-const numbers = [1, 2, 3, 4, 5];
-
-const doubled = numbers.map(x => x * 2);
-const even = numbers.filter(x => x % 2 === 0);
-const sum = numbers.reduce((acc, val) => acc + val, 0);
-```
-
-### 20. Prototype and this Context
+### 15. Prototype and functions as object constructors
 
 In JavaScript, functions can serve as constructors for objects. Objects created from a constructor function inherit properties and methods from the constructor's prototype.
 
@@ -439,7 +464,7 @@ person1.greet(); // Outputs "Hello, my name is Alice"
 person2.greet(); // Outputs "Hello, my name is Bob"
 ```
 
-### 21. Closures and Data Privacy:
+### 16. Closures and Data Privacy
 
 Closures are often used to create private variables and encapsulate data within a function, preventing direct access from the outside world.
 
@@ -457,7 +482,7 @@ console.log(counter()); // Outputs 1
 console.log(counter()); // Outputs 2
 ```
 
-### 22. Closures and Functional Programming:
+### 17. Closures and Functional Programming:
 
 Closures are essential in functional programming paradigms. They enable the creation of higher-order functions that can carry data or state between calls, also enabling multiple and flixible usage of functions.
 
@@ -473,13 +498,13 @@ function temperatureConverter(baseUnit) {
 }
 
 const celsiusToFar = temperatureConverter('Celsius');
-console.log(celsiusToFar(25)); // Outputs 77
+console.log(celsiusToFar(25)); // Output: 77
 
 const farToCelsius = temperatureConverter('Fahrenheit');
-console.log(farToCelsius(98.6)); // Outputs 37
+console.log(farToCelsius(98.6)); // Output: 37
 ```
 
-### 23. Closures and Event Handling:
+### 18. Closures and Event Handling:
 
 Closures are a powerful concept often employed in event handling to capture and retain the specific state of variables at the moment when an event listener is attached. This ensures that the listener correctly accesses the data it needs even when the event occurs later, potentially when the surrounding function has finished executing.
 
@@ -498,7 +523,7 @@ attachHandler(button, "click");
 
 The attachHandler function takes an HTML element (element) and an event name (eventName) as parameters. Inside the function, a closure is created when the anonymous function (event listener) is defined within the addEventListener call. This closure captures the values of both element and eventName at the time of the function call. When the event (in this case, a "click" event) occurs on the specified element (in this case, a button with the id "myButton"), the attached event listener function is executed. Since the closure captured the values of element and eventName when attachHandler was called, the listener correctly logs the event details, including the event name and the id of the element. This mechanism ensures that even if the attachHandler function completes its execution and the surrounding context changes, the event listener still has access to the variables it needs due to the closure's encapsulation of those values.
 
-### 24. Functions as first-class citizens:
+### 19. Functions as first-class citizens:
 
 The concept of "first-class citizens" is a fundamental principle in programming languages, including JavaScript. It refers to the idea that entities such as functions and variables are treated as equal citizens within the language, meaning they can be used, manipulated, and passed around just like any other data type. In simpler terms, in a programming language that treats entities as first-class citizens, you can do the following with functions and variables:
 
