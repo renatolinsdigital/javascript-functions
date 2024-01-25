@@ -2,6 +2,29 @@
 
 JavaScript functions make up the essential 20% of code knowledge that brings about 80% of effectiveness in using the language. They empower developers by letting them bundle and reuse code, acting as the key element in creating projects that are not just functional but also neat, well-organized, and super efficient. In this guide, I'll share some essential points about JavaScript functions that might help in understanding the language better and serve as the foundation for good coding practices.
 
+## Table of Contents
+
+1. [Function Basics](#1-function-basics)
+2. [Function Hoisting](#2-function-hoisting)
+3. [Scope I - Function Scope and Context](#3-scope-i---function-scope-and-context)
+4. [Higher-Order Functions](#4-higher-order-functions)
+5. [Closures](#5-closures)
+6. [Callbacks and Asynchronous JavaScript](#6-callbacks-and-asynchronous-javascript)
+7. [Default Parameters and Rest Parameters (ES6 Features)](#7-default-parameters-and-rest-parameters-es6-features)
+8. [IIFE (Immediately Invoked Function Expression)](#8-iife-immediately-invoked-function-expression)
+9. [Recursion](#9-recursion)
+10. [Scope II - The Methods .call, .apply, and .bind](#10-scope-ii---the-methods-call-apply-and-bind)
+11. [Generator Functions](#11-generator-functions)
+12. [Promises, Async-Await, and How They Relate to Functions](#12-promises-async-await-and-how-they-relate-to-functions)
+13. [Function Currying](#13-function-currying)
+14. [Memoization](#14-memoization)
+15. [Prototype and Functions as Object Constructors](#15-prototype-and-functions-as-object-constructors)
+16. [Closures and Data Privacy](#16-closures-and-data-privacy)
+17. [Closures and Functional Programming](#17-closures-and-functional-programming)
+18. [Closures and Event Handling](#18-closures-and-event-handling)
+19. [The 'Event Loop' and How It Relates to Function Calls](#19-the-event-loop-and-how-it-relates-to-function-calls)
+20. [Functions as First-Class Citizens](#20-functions-as-first-class-citizens)
+
 ### 1. Function basics
 
 There are two common ways to define functions in JavaScript: function declarations and function expressions.
