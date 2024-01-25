@@ -387,8 +387,9 @@ function fetchData() {
     });
 }
 
-// Calling 'fetchData', which returns a Promise with asynchronous operation capabilities.
-// 'fetchData' is no longer a regular function; it is now a Promise that may resolve with data or reject with an error.
+/* Calling 'fetchData', which returns a Promise with asynchronous operation capabilities.
+ Be aware that 'fetchData' is no longer a regular function; it is now a Promise that 
+ may resolve with data or reject with an error.*/
 fetchData()
     .then(data => console.log(data))
     .catch(error => console.error(error));
@@ -397,9 +398,10 @@ fetchData()
 __async-await__: The ```async-await``` syntax provides a more synchronous-looking way to work with asynchronous code. In the example, the function ```fetchDataAsync()``` is declared as ```async```, and within it, ```await``` is used to pause the execution until the ```fetchData()``` resolves or rejects. This enhances readability by making the asynchronous code appear similar to synchronous code.
 
 ```javascript
-async function fetchDataAsync() { // 'async' keyword is necessary if we plan to use 'wait' inside of that same function
+async function fetchDataAsync() { // 'async' keyword is necessary if we plan to use 'wait'
     try {
-        // fetchData is is a promise that is temporarily paused until it either resolves with a result or rejects with an error.
+        /* 'fetchData' is is a promise that is temporarily paused until it either 
+        resolves with a result or rejects with an error. */
         const data = await fetchData(); 
         console.log(data);
     } catch (error) {
