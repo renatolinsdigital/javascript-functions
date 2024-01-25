@@ -454,42 +454,72 @@ Note that this technique is entirely based on the concept of closures.
 
 ### 14. Memoization
 
-Memoization is a technique to optimize functions by caching their results for specific inputs, reducing redundant computations.
+Memoization is a technique used to optimize the performance of functions by caching, or storing, their computed results for specific inputs. This helps avoid redundant computations and speeds up the execution of the function. In the context of the Fibonacci sequence, which is a series of numbers where each number is the sum of the two preceding ones (e.g., 0, 1, 1, 2, 3, 5, 8, ...), memoization helps avoid recalculating the same Fibonacci numbers multiple times. The example provided demonstrates how memoization can be applied:
 
 ```javascript
+// Function to calculate Fibonacci numbers with memoization
 function fibonacci(n, memo = {}) {
+    // Check if the result for index 'n' is already memoized
     if (n in memo) {
-        return memo[n];
+        return memo[n]; // Return the cached result
     }
+
+    // Base case: if 'n' is 0 or 1, return 'n' itself
     if (n <= 1) {
         return n;
     }
+
+    // Recursive calculation with memoization
     memo[n] = fibonacci(n - 1, memo) + fibonacci(n - 2, memo);
+    
+    // Return the calculated result for index 'n'
     return memo[n];
 }
 
+// Example usage: calculate and output Fibonacci number at index 10
 console.log(fibonacci(10)); // Outputs 55
 ```
 
+To make it clear:
+
+* The memo object stores previously calculated Fibonacci numbers to avoid recomputation.
+* If the result for the input n is in memo, it is returned.
+* Base cases handle indices 0 and 1, returning n.
+* For other indices, the function recursively calculates Fibonacci numbers.
+* Calculated results are stored in memo.
+* The function returns the Fibonacci number for the input index.
+
 ### 15. Prototype and functions as object constructors
 
-In JavaScript, functions can serve as constructors for objects. Objects created from a constructor function inherit properties and methods from the constructor's prototype.
+In JavaScript, functions can serve as constructors, allowing the creation of objects with specific characteristics. Objects generated from a constructor inherit properties and methods from the constructor's prototype, providing a blueprint for object creation.
 
 ```javascript
+// Define a constructor function 'Person' that takes a 'name' parameter
 function Person(name) {
+    // Assign the 'name' parameter to the 'name' property of the object being created
     this.name = name;
 }
 
+// Add a 'greet' method to the prototype of the 'Person' constructor
 Person.prototype.greet = function() {
     console.log(`Hello, my name is ${this.name}`);
 };
 
+// Create instances of 'Person' using the 'new' keyword
 const person1 = new Person("Alice");
 const person2 = new Person("Bob");
 
+// Call the 'greet' method on the created instances
 person1.greet(); // Outputs "Hello, my name is Alice"
 person2.greet(); // Outputs "Hello, my name is Bob"
 ```
+
+To further enhance clarity, we can consider:
+
+* The Person function acts as a blueprint for creating objects with a name property.
+* The ```greet``` method is added to the prototype of the Person function, making it accessible to all instances.
+* Using the ```new``` keyword creates instances of Person, initializing the ```name``` property for each.
+* The ```greet``` method can be called on each instance, displaying a personalized greeting based on the assigned name.
 
 ### 16. Closures and Data Privacy
 
@@ -511,7 +541,7 @@ console.log(counter()); // Outputs 2
 
 ### 17. Closures and Functional Programming:
 
-Closures are essential in functional programming paradigms. They enable the creation of higher-order functions that can carry data or state between calls, also enabling multiple and flixible usage of functions.
+Functional programming is a programming paradigm that emphasizes the use of functions as __first-class citizens__ (further explained later on). In this paradigm, closures and higher-order functions play a crucial role. In the example provided, ```temperatureConverter``` is a higher-order function that takes ```baseUnit``` as an argument and returns another function. This returned function, when invoked with a value, performs temperature conversions based on the specified base unit.
 
 ```javascript
 function temperatureConverter(baseUnit) {
@@ -530,6 +560,15 @@ console.log(celsiusToFar(25)); // Output: 77
 const farToCelsius = temperatureConverter('Fahrenheit');
 console.log(farToCelsius(98.6)); // Output: 37
 ```
+
+Here's a breakdown:
+
+* temperatureConverter is a higher-order function as it returns a function.
+* The returned function retains access to the baseUnit parameter from the outer function, creating a closure.
+* celsiusToFar and farToCelsius are instances of the returned function, each specialized for a specific temperature unit.
+* When these instances are invoked with a value, they perform the temperature conversion as per their base unit.
+
+This example showcases how closures enable the creation of reusable and specialized functions, aligning with the principles of functional programming, allowing for flexibility and composability.
 
 ### 18. Closures and Event Handling:
 
@@ -600,7 +639,17 @@ __Return as Values:__ Functions can be returned as values from other functions. 
 
 __Store in Data Structures:__ Functions can be stored in data structures like arrays or objects, allowing you to organize and manage functions in a structured manner.
 
-JavaScript is an example of a programming language that treats functions as first-class citizens. This feature is why JavaScript can be used for various programming paradigms, such as functional programming, where functions are used extensively to solve problems. 
+__Composability:__ With these mentioned behaviors, JavaScript accommodates the functional programming paradigm extremely well. The language provides a modern and highly recommended approach to code reuse, commonly known as __composability__. Composability, within the context of functional programming, involves combining smaller, independent functions to generate more advanced functionality. This approach is valued for various reasons:
+
+* Modularity: Composable functions are modular, meaning they are designed to perform a specific task or solve a specific problem. This modular approach makes code easier to understand and maintain. 
+
+* Reusability: Composable functions are reusable components that can be employed in various parts of a program or even in different projects. When functions are designed with a specific purpose and are independent of the larger context, they become versatile tools that can be reused wherever needed.
+
+* Readability: Composing functions allows developers to express complex operations in a more readable and concise manner. By breaking down a problem into smaller, focused functions, the overall logic becomes clearer, and the codebase becomes more comprehensible.
+
+* Scalability: Composable functions contribute to scalable code. As a project grows, developers can easily extend and modify functionality by combining existing functions or introducing new composable functions. This scalability is crucial for managing large or complex code bases.
+
+* Testability: Composable functions facilitate unit testing, as each function can be tested independently. Testing smaller units of code is generally more straightforward than testing large, monolithic components. This promotes a robust testing strategy and ensures the reliability of the software.
 
 ### Conclusion:
 
