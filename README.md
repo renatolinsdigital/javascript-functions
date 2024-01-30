@@ -362,13 +362,13 @@ Base case: If n is less than or equal to 1, the function returns 1. This is the 
 
 Recursive case: If n is greater than 1, the function returns n multiplied by the result of calling itself with the argument n - 1. This is the recursive step, where the problem is broken down into a smaller instance.
 
-### 10. Scope II - The Methods .call, .apply, and .bind
+### 10. Scope II - The Methods .call(), .apply(), and .bind()
 
-These are methods that can be used to control the context (this) in which a function is executed.
+In JavaScript, the methods ```.call()```, ```.apply()```, and ```.bind()``` are used to manipulate how a function is executed and what object it should reference. They provide a way to control the context (the value of ```this```) and pass arguments to a function.
 
-- __call__: Calls a function with a specified this value and individual arguments.
-- __apply__: Calls a function with a specified this value and an array of arguments.
-- __bind__: Returns a new function with a specified this value, which can be called later.
+- __.call()__: Calls a function with a specified this value and individual arguments.
+- __.apply()__: Calls a function with a specified this value and an array of arguments.
+- __.bind()__: Returns a new function with a specified this value, which can be called later.
 
 ```javascript
 const person = {
@@ -386,6 +386,16 @@ const boundGreet = greet.bind(person);
 boundGreet("Hey"); // Outputs "Hey, John Doe"
 ```
 
+Why They Can Be Useful:
+
+__Dynamic Context:__ ```.call()``` and ```.apply()``` allow you to set the this value dynamically, enabling you to execute a function within the context of a specific object.
+
+__Partial Function Application:__ ```.bind()``` is often used for partial function application, where you create a new function with certain arguments fixed. This is useful when you want to create a function with some arguments preset for future use.
+
+__Code Reusability:__ These methods contribute to code reusability by allowing you to reuse functions in different contexts without modifying their core logic.
+
+__Method Borrowing:__ With ```.call()``` and ```.apply()```, you can borrow methods from one object and apply them to another object.
+
 ### 11. Generator Functions
 
 Generator functions allow you to pause and resume their execution, yielding values one at a time. They are useful for dealing with asynchronous operations and lazy evaluation.
@@ -402,6 +412,18 @@ console.log(counter.next().value); // Outputs 1
 console.log(counter.next().value); // Outputs 2
 // And so on...
 ```
+
+When to consider using Generator Functions:
+
+__Lazy Evaluation:__ Generator functions enable lazy evaluation, meaning values are generated on-demand rather than all at once. This can be advantageous when dealing with large datasets or expensive computations, as you can generate values only when needed.
+
+__Asynchronous Operations:__ While ```async-await``` is commonly used for managing asynchronous operations, generator functions offer an alternative approach. Generators can be used with the yield keyword to pause execution and handle asynchronous tasks in a more sequential manner.
+
+__Infinite Sequences:__ Generator functions can represent infinite sequences of values. Traditional loops would require special handling to achieve this, but generators can keep producing values indefinitely using the ```yield``` statement.
+
+__Memory Efficiency:__ For scenarios where you need to process a large dataset, generators allow you to handle one item at a time, reducing memory consumption compared to loading the entire dataset into memory at once.
+
+__Stateful Iteration:__ Generator functions maintain their state between calls, making them suitable for scenarios where the iteration process needs to remember its position.
 
 ### 12. Promises, async-await and how they relate to functions
 
