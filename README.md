@@ -333,18 +333,34 @@ console.log(privateVar); // Error: privateVar is not defined
 
 ### 9. Recursion
 
-Recursion is a technique where a function calls itself. It's particularly useful for solving problems that can be broken down into smaller, similar sub-problems. Example:
+Recursion is a programming technique where a function calls itself in order to solve a problem. It's particularly useful for solving problems that can be broken down into smaller instances of the same problem. Recursive solutions typically involve two main components:
+
+__Base case(s):__ These are specific conditions where the function does not make a recursive call and instead returns a known and straightforward result. Base cases prevent the recursion from continuing indefinitely and provide a stopping condition.
+
+__Recursive case(s):__ In this part of the function, the problem is broken down into smaller instances of the same problem. The function calls itself with a modified input, and the results are combined to solve the original problem.
+
+Here's a simple example in JavaScript that demonstrates recursion by calculating the factorial of a number:
 
 ```javascript
 function factorial(n) {
+    // Base case
     if (n <= 1) {
         return 1;
     }
+    
+    // Recursive case
     return n * factorial(n - 1);
 }
 
+// Example usage
 console.log(factorial(5)); // Outputs 120
 ```
+
+In this example:
+
+Base case: If n is less than or equal to 1, the function returns 1. This is the stopping condition, preventing the recursion from going on forever.
+
+Recursive case: If n is greater than 1, the function returns n multiplied by the result of calling itself with the argument n - 1. This is the recursive step, where the problem is broken down into a smaller instance.
 
 ### 10. Scope II - The Methods .call, .apply, and .bind
 
