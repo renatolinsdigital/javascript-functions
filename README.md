@@ -601,9 +601,9 @@ console.log(farToCelsius(98.6)); // Output: 37
 
 Here's a breakdown:
 
-* temperatureConverter is a higher-order function as it returns a function.
-* The returned function retains access to the baseUnit parameter from the outer function, creating a closure.
-* celsiusToFar and farToCelsius are instances of the returned function, each specialized for a specific temperature unit.
+* ```temperatureConverter``` is a higher-order function as it returns a function.
+* The returned function retains access to the ```baseUnit``` parameter from the outer function, creating a closure.
+* ```celsiusToFar``` and ```farToCelsius``` are instances of the returned function, each specialized for a specific temperature unit.
 * When these instances are invoked with a value, they perform the temperature conversion as per their base unit.
 
 This example showcases how closures enable the creation of reusable and specialized functions, aligning with the principles of functional programming, allowing for flexibility and composability.
@@ -631,8 +631,7 @@ The ```attachHandler``` function takes an HTML element (```element```) and an ev
 
 JavaScript is a single-threaded language, meaning it has only one execution thread. This thread executes code line by line. If a piece of code takes a long time to run, it can block the entire thread, making the application unresponsive. JavaScript is designed to be __non-blocking__ and uses an __event-driven__ model to handle asynchronous code. This can lead to some behaviors that may seem counterintuitive at first, but I hope it will make sense once we delve into the following concepts:
 
-__Call Stack:__ The call stack is a mechanism that keeps track of the functions being executed. When a function is called, it is added to the top of the stack, and when the function completes, it is removed from the stack.
-The call stack follows a last-in, first-out (LIFO) order, meaning the last function added is the first one to be executed.
+__Call Stack:__ The call stack is a mechanism that keeps track of the functions being executed. When a function is called, it is added to the top of the stack, and when the function completes, it is removed from the stack. The call stack follows a last-in, first-out (LIFO) order, meaning the last function added is the first one to be executed.
 
 __Callback Queue:__ The callback queue (also known as the task queue or message queue) is where asynchronous callbacks are placed after their associated operations complete. Asynchronous operations, such as those initiated by timers (setTimeout), AJAX/HTTP requests, or event handlers, involve callbacks that are not executed immediately. Instead of blocking the main thread, these callbacks are scheduled to run after the current execution context is finished. When the callback is ready to be executed, it is placed in the callback queue.
 
