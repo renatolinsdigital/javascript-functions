@@ -25,6 +25,8 @@ JavaScript functions make up the essential 20% of code knowledge that brings abo
 19. [The 'Event Loop' and How It Relates to Function Calls](#19-the-event-loop-and-how-it-relates-to-function-calls)
 20. [Functions as First-Class Citizens](#20-functions-as-first-class-citizens)
 
+---
+
 ### 1. Function basics
 
 There are two common ways to define functions in JavaScript: function declarations and function expressions.
@@ -113,6 +115,8 @@ const greet = (timeOfDay) => {
 };
 ```
 
+---
+
 ### 2. Function Hoisting
 
 Function hoisting is a behavior in JavaScript where function declarations are moved to the top of their containing scope during the compilation phase. This means that you can call a function before its actual declaration in the code, and the JavaScript engine will still recognize and execute the function call correctly.
@@ -160,6 +164,8 @@ let name = "Alice";
 // Now accessing the variable after declaration
 console.log(name); // Outputs: Alice
 ```
+
+---
 
 ### 3. Scope I - Function scope and context
 
@@ -221,6 +227,8 @@ __The 'return' syntax__: Function declarations always have an explicit return st
 
 Extra consideation: Function declarations(or regular functions) have access to the arguments object, which holds all arguments passed to the function. Arrow functions do not have their own arguments object. They inherit the arguments from the enclosing scope.
 
+---
+
 ### 4. Higher-Order Functions
 
 Higher-order functions in JavaScript are functions that can either accept other functions as arguments or return functions as their results. Also, we can consider the passed function as a higher-order function, since it operates on another function. This unique feature empowers functions to be treated as dynamic entities within the language, granting greater flexibility in programming. An exemplary case of a higher-order function is the ```operateOnArray``` function:
@@ -239,6 +247,8 @@ const doubled = operateOnArray(numbers, (x) => x * 2);
 ```
 
 Notably, the function ```(x) => x * 2```, passed as an argument to ```operateOnArray```, is itself a higher-order function as it operates on another function. This powerful concept of higher-order functions fundamentally contributes to the versatility and expressiveness of JavaScript programming.
+
+---
 
 ### 5. Closures
 
@@ -266,6 +276,8 @@ console.log(triple(5)); // Outputs 15.
 
 Closures are essential for various programming patterns, like creating private data, implementing data encapsulation, and enabling certain capabilities for both functional and asynchronous programming.
 
+---
+
 ### 6. Callbacks and Asynchronous JavaScript
 
 Functions can be used as callbacks in asynchronous operations to handle actions that might take some time to complete, like fetching data or handling events.
@@ -287,6 +299,8 @@ fetchData(displayData);
 ```
 
 Note: The problem with depending on callbacks for asynchronous operations is that we might encounter a situation where we need to chain multiple callbacks one after the other, making the code difficult to read and potentially prone to bugs. To tackle this issue, JavaScript introduces the concept of promises, which will be covered later in this tutorial.
+
+---
 
 ### 7. Default Parameters and Rest Parameters (ES6 Features)
 
@@ -317,6 +331,8 @@ function sum(...numbers) {
 
 Here, the sum function can take any number of arguments, and it will calculate their sum using the ```reduce``` method. For instance, ```sum(1, 2, 3)``` will return ```6```. In summary, default parameters provide a fallback value if an argument is not provided, and rest parameters allow a function to handle an arbitrary number of arguments as an array, enabling flexible and dynamic behavior.
 
+---
+
 ### 8. IIFE (Immediately Invoked Function Expression)
 
 An IIFE is a function that is defined and executed immediately after its creation. It's often used to create a private scope and prevent variable name clashes.
@@ -330,6 +346,8 @@ An IIFE is a function that is defined and executed immediately after its creatio
 // Attempting to access privateVar outside the IIFE will result in an error
 console.log(privateVar); // Error: privateVar is not defined
 ```
+
+---
 
 ### 9. Recursion
 
@@ -361,6 +379,8 @@ In this example:
 Base case: If n is less than or equal to 1, the function returns 1. This is the stopping condition, preventing the recursion from going on forever.
 
 Recursive case: If n is greater than 1, the function returns n multiplied by the result of calling itself with the argument n - 1. This is the recursive step, where the problem is broken down into a smaller instance.
+
+---
 
 ### 10. Scope II - The Methods .call(), .apply(), and .bind()
 
@@ -396,6 +416,8 @@ __Code Reusability:__ These methods contribute to code reusability by allowing y
 
 __Method Borrowing:__ With ```.call()``` and ```.apply()```, you can borrow methods from one object and apply them to another object.
 
+---
+
 ### 11. Generator Functions
 
 Generator functions allow you to pause and resume their execution, yielding values one at a time. They are useful for dealing with asynchronous operations and lazy evaluation.
@@ -424,6 +446,8 @@ __Infinite Sequences:__ Generator functions can represent infinite sequences of 
 __Memory Efficiency:__ For scenarios where you need to process a large dataset, generators allow you to handle one item at a time, reducing memory consumption compared to loading the entire dataset into memory at once.
 
 __Stateful Iteration:__ Generator functions maintain their state between calls, making them suitable for scenarios where the iteration process needs to remember its position.
+
+---
 
 ### 12. Promises, async-await and how they relate to functions
 
@@ -473,6 +497,8 @@ async function fetchDataAsync() { // 'async' keyword is necessary if we plan to 
 fetchDataAsync();
 ```
 
+---
+
 ### 13. Function Currying
 
 Currying is the process of converting a function that takes multiple arguments into a series of functions that take one argument each.
@@ -489,6 +515,8 @@ console.log(add5(3)); // Outputs 8
 ```
 
 Note that this technique is entirely based on the concept of closures.
+
+---
 
 ### 14. Memoization
 
@@ -527,6 +555,8 @@ To make it clear:
 * Calculated results are stored in memo.
 * The function returns the Fibonacci number for the input index.
 
+---
+
 ### 15. Prototype and functions as object constructors
 
 In JavaScript, functions can serve as constructors, allowing the creation of objects with specific characteristics. Objects generated from a constructor inherit properties and methods from the constructor's prototype, providing a blueprint for object creation.
@@ -559,6 +589,8 @@ To further enhance clarity, we can consider:
 * Using the ```new``` keyword creates instances of Person, initializing the ```name``` property for each.
 * The ```greet``` method can be called on each instance, displaying a personalized greeting based on the assigned name.
 
+---
+
 ### 16. Closures and Data Privacy
 
 Closures are often used to create private variables and encapsulate data within a function, preventing direct access from the outside world.
@@ -576,6 +608,8 @@ const counter = createCounter();
 console.log(counter()); // Outputs 1
 console.log(counter()); // Outputs 2
 ```
+
+---
 
 ### 17. Closures and Functional Programming:
 
@@ -608,6 +642,8 @@ Here's a breakdown:
 
 This example showcases how closures enable the creation of reusable and specialized functions, aligning with the principles of functional programming, allowing for flexibility and composability.
 
+---
+
 ### 18. Closures and Event Handling:
 
 Closures are a powerful concept often employed in event handling to capture and retain the specific state of variables at the moment when an event listener is attached. This ensures that the listener correctly accesses the data it needs even when the event occurs later, potentially when the surrounding function has finished executing.
@@ -626,6 +662,8 @@ attachHandler(button, "click");
 ```
 
 The ```attachHandler``` function takes an HTML element (```element```) and an event name (```eventName```) as parameters. Inside the function, a closure is created when the anonymous function (event listener) is defined within the ```addEventListener``` call. This closure captures the values of both element and eventName at the time of the function call. When the event (in this case, a "click" event) occurs on the specified element (in this case, a button with the id ```my-button```), the attached event listener is executed. Since the closure captured the values of ```element``` and ```eventName``` when ```attachHandler``` was called, the listener correctly logs the event details, including the event name and the id of the element. This mechanism ensures that even if the ```attachHandler``` function completes its execution and the surrounding context changes, the event listener still has access to the variables it needs due to the closure's encapsulation of those values.
+
+---
 
 ### 19. The 'Event loop' and how it relates to function calls
 
@@ -664,6 +702,8 @@ So we will have:
 
 While the example uses ```console.log()```, the behavior is similar for other functions. The key point is to demonstrate how asynchronous operations impact the flow of the program and introduce a delay in execution order.
 
+---
+
 ### 20. Functions as first-class citizens:
 
 The concept of "first-class citizens" is a fundamental principle in programming languages, including JavaScript. It refers to the idea that entities such as functions and variables are treated as equal citizens within the language, meaning they can be used, manipulated, and passed around just like any other data type. In simpler terms, in a programming language that treats entities as first-class citizens, you can do the following with functions and variables:
@@ -687,6 +727,8 @@ __Composability:__ With these mentioned behaviors, JavaScript accommodates the f
 * Scalability: Composable functions contribute to scalable code. As a project grows, developers can easily extend and modify functionality by combining existing functions or introducing new composable functions. This scalability is crucial for managing large or complex code bases.
 
 * Testability: Composable functions facilitate unit testing, as each function can be tested independently. Testing smaller units of code is generally more straightforward than testing large, monolithic components. This promotes a robust testing strategy and ensures the reliability of the software.
+
+---
 
 ### Conclusion:
 
