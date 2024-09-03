@@ -147,7 +147,7 @@ This behavior applies specifically to function declarations (using the function 
 // This will result in an error
 greet("Alice"); // Error: Cannot access 'greet' before initialization
 
-let greet = function(name) {
+const greet = function(name) {
     console.log(`Hello, ${name}!`);
 };
 ```
@@ -159,7 +159,7 @@ Assigning function expressions to ```let``` and ```const``` is not just preferab
 console.log(name); // ReferenceError: Cannot access 'name' before initialization
 
 // Declaration and assignment in the same scope
-let name = "Alice";
+const name = "Alice";
 
 // Now accessing the variable after declaration
 console.log(name); // Outputs: Alice
